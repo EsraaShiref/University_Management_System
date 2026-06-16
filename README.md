@@ -1,11 +1,23 @@
+<div align="center">
+
+![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+![EF Core](https://img.shields.io/badge/EF%20Core-8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+![Auth](https://img.shields.io/badge/Auth-ASP.NET%20Identity-E44D26?style=flat-square&logo=dotnet&logoColor=white)
+![UI](https://img.shields.io/badge/UI-Bootstrap%205-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
+![Language](https://img.shields.io/badge/Language-C%23-239120?style=flat-square&logo=csharp&logoColor=white)
+![Database](https://img.shields.io/badge/Database-SQL%20Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+
+![Pattern](https://img.shields.io/badge/Pattern-MVC-0078D4?style=flat-square)
+![ORM](https://img.shields.io/badge/ORM-Entity%20Framework-512BD4?style=flat-square)
+![IDE](https://img.shields.io/badge/IDE-Visual%20Studio%202022-5C2D91?style=flat-square&logo=visualstudio&logoColor=white)
+![Status](https://img.shields.io/badge/Status-In%20Development-F59E0B?style=flat-square)
+
 # 🎓 University Management System
 
-![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-MVC-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)
+*A full-featured academic platform for managing students, courses, faculty, and enrollments.*
+*Built with ASP.NET Core MVC — clean, scalable, and role-based.*
 
-A full-featured **University Management System** built with ASP.NET Core MVC, designed to streamline and manage core university operations such as student enrollment, course management, faculty administration, and more.
+</div>
 
 ---
 
@@ -44,8 +56,8 @@ A full-featured **University Management System** built with ASP.NET Core MVC, de
 | Framework | ASP.NET Core MVC (.NET 8) |
 | Language | C# |
 | Frontend | Razor Views, Bootstrap 5, jQuery |
-| Database | SQL Server / Entity Framework Core |
-| ORM | Entity Framework Core |
+| Database | SQL Server |
+| ORM | Entity Framework Core 8 |
 | Authentication | ASP.NET Core Identity |
 | IDE | Visual Studio 2022 |
 
@@ -89,7 +101,7 @@ Make sure you have the following installed:
 
 ### Configuration
 
-1. Copy `appsettings.Development.json.example` to `appsettings.Development.json` (or create it manually)
+1. Create `appsettings.Development.json` in the project root
 2. Update the connection string with your SQL Server details:
 
 ```json
@@ -164,10 +176,14 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 📬 Contact
 
+<div align="center">
+
 **Esraa Shiref**
 
-[![GitHub](https://img.shields.io/badge/GitHub-EsraaShiref-181717?style=flat&logo=github)](https://github.com/EsraaShiref)
+[![GitHub](https://img.shields.io/badge/GitHub-EsraaShiref-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/EsraaShiref)
 
 ---
 
-> Built with ❤️ using ASP.NET Core MVC
+*Built with ❤️ using ASP.NET Core MVC*
+
+</div>
