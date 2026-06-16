@@ -46,6 +46,12 @@
 - 🔐 **Authentication & Authorization** — Secure login with role-based access control
 - 📊 **Dashboard** — Overview of system statistics and quick actions
 - 📱 **Responsive Design** — Mobile-friendly UI powered by Bootstrap 5
+- 🎨 **Design System** — Deep Navy + Warm Gold color palette with full 9-shade CSS custom property scales
+- 🔤 **Design System** — Playfair Display + Inter professional font pairing via Google Fonts
+- 🧩 **Design System** — Pre-built components: Sidebar, Topbar, Cards, Buttons, Forms, Tables, Badges, Alerts, Modals
+- ✨ **Design System** — Keyframe animations: fadeInUp, slideInSidebar, pulseBadge, shimmer skeleton loading
+- 📱 **Design System** — Fully responsive with prefers-reduced-motion support
+- 🔗 **Design System** — Bootstrap 5 seamlessly extended via CSS custom properties (--bs-* overrides)
 
 ---
 
@@ -60,6 +66,7 @@
 | ORM | Entity Framework Core 8 |
 | Authentication | ASP.NET Core Identity |
 | IDE | Visual Studio 2022 |
+| Design System | Custom CSS (CSS Variables + Bootstrap 5 Extensions) |
 
 ---
 
@@ -131,6 +138,7 @@ University-Management-System/
 ├── Properties/           # Launch settings
 ├── wwwroot/              # Static files (CSS, JS, images)
 │   ├── css/
+│   │   └── site.css        # Full design system (tokens, components, animations)
 │   └── js/
 │
 ├── appsettings.json               # App configuration
