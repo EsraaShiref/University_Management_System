@@ -1,0 +1,16 @@
+.vs/
+obj/
+bin/
+*.user
+wwwroot/lib/
+
+# Sensitive config
+appsettings.Development.json
+
+# Publish output
+publish/
+*.pubxml
+
+# OS files
+.DS_Store
+Thumbs.db
