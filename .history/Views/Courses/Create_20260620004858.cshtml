@@ -1,0 +1,63 @@
+@model University_Management_System.Models.Course
+@{ ViewData["Title"] = "Add Course"; }
+
+<div class="page-header">
+  <div class="page-header__meta">
+    <span class="text-eyebrow">Academic</span>
+    <h1 class="page-title">Add Course</h1>
+    <p class="page-subtitle">Create a new course offering.</p>
+  </div>
+  <div class="page-header__actions">
+    <a asp-action="Index" class="btn btn-secondary">← Back</a>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <div class="card animate-fade-in-up">
+      <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+          <label class="form-label" asp-for="Name">Course Name <span class="required">*</span></label>
+          <input class="form-control" asp-for="Name" placeholder="e.g. Data Structures" />
+          <span class="invalid-feedback" asp-validation-for="Name"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" asp-for="Description">Description</label>
+          <textarea class="form-control" asp-for="Description" rows="3" placeholder="Brief description of the course..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" asp-for="Topics">Topics <span class="required">*</span></label>
+          <input class="form-control" asp-for="Topics" placeholder="e.g. Arrays, Trees, Graphs (comma-separated)" />
+          <span class="form-text">Separate topics with commas.</span>
+          <span class="invalid-feedback" asp-validation-for="Topics"></span>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label" asp-for="HighestDegree">Highest Degree</label>
+              <input class="form-control" asp-for="HighestDegree" placeholder="e.g. A" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label" asp-for="LowestDegree">Lowest Degree</label>
+              <input class="form-control" asp-for="LowestDegree" placeholder="e.g. D" />
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:var(--space-3);margin-top:var(--space-6);">
+          <button type="submit" class="btn btn-primary">Create Course</button>
+          <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+@section Scripts { @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); } }

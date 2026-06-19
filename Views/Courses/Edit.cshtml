@@ -1,0 +1,70 @@
+@model University_Management_System.Models.Course
+@{
+    ViewData["Title"] = "Edit Course";
+}
+
+<div class="page-header">
+    <div class="page-header__meta">
+        <span class="text-eyebrow">Academic</span>
+        <h1 class="page-title">Edit Course</h1>
+        <p class="page-subtitle">Update course information.</p>
+    </div>
+    <div class="page-header__actions">
+        <a asp-action="Index" class="btn btn-secondary">← Back</a>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card animate-fade-in-up">
+            <form asp-action="Edit" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="CrsId" />
+
+                <div class="form-group">
+                    <label class="form-label" asp-for="Name">Course Name <span class="required">*</span></label>
+                    <input class="form-control" asp-for="Name" />
+                    <span class="invalid-feedback" asp-validation-for="Name"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" asp-for="Description">Description</label>
+                    <textarea class="form-control" asp-for="Description" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" asp-for="Topics">Topics</label>
+                    <input class="form-control" asp-for="Topics" />
+                    <span class="form-text">Separate topics with commas.</span>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" asp-for="HighestDegree">Highest Degree</label>
+                            <input class="form-control" asp-for="HighestDegree" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" asp-for="LowestDegree">Lowest Degree</label>
+                            <input class="form-control" asp-for="LowestDegree" />
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:var(--space-3);margin-top:var(--space-6);">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}

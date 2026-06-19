@@ -8,14 +8,13 @@ namespace University_Management_System.Controllers
     public class DepartmentsController : Controller
     {
         private readonly AppDbContext _db;
-
         public DepartmentsController(AppDbContext db) => _db = db;
 
         // GET: /Departments
         public async Task<IActionResult> Index()
         {
-            var departments = await _db
-                .Departments.Include(d => d.Students)
+            var departments = await _db.Departments
+                .Include(d => d.Students)
                 .Include(d => d.Instructors)
                 .ToListAsync();
             return View(departments);
@@ -29,8 +28,7 @@ namespace University_Management_System.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Department model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
+            if (!ModelState.IsValid) return View(model);
             _db.Departments.Add(model);
             await _db.SaveChangesAsync();
             TempData["Success"] = "Department created successfully.";
@@ -41,8 +39,7 @@ namespace University_Management_System.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var dept = await _db.Departments.FindAsync(id);
-            if (dept == null)
-                return NotFound();
+            if (dept == null) return NotFound();
             return View(dept);
         }
 
@@ -51,10 +48,8 @@ namespace University_Management_System.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Department model)
         {
-            if (id != model.DeptId)
-                return BadRequest();
-            if (!ModelState.IsValid)
-                return View(model);
+            if (id != model.DeptId) return BadRequest();
+            if (!ModelState.IsValid) return View(model);
             _db.Departments.Update(model);
             await _db.SaveChangesAsync();
             TempData["Success"] = "Department updated successfully.";
@@ -67,8 +62,7 @@ namespace University_Management_System.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var dept = await _db.Departments.FindAsync(id);
-            if (dept == null)
-                return NotFound();
+            if (dept == null) return NotFound();
             _db.Departments.Remove(dept);
             await _db.SaveChangesAsync();
             TempData["Success"] = "Department deleted successfully.";

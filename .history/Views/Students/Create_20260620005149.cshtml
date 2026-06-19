@@ -1,0 +1,44 @@
+@model University_Management_System.Models.Student
+@{ ViewData["Title"] = "Add Student"; }
+
+<div class="page-header">
+  <div class="page-header__meta">
+    <span class="text-eyebrow">Academic</span>
+    <h1 class="page-title">Add Student</h1>
+    <p class="page-subtitle">Register a new student in the system.</p>
+  </div>
+  <div class="page-header__actions">
+    <a asp-action="Index" class="btn btn-secondary">← Back</a>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card animate-fade-in-up">
+      <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+          <label class="form-label" asp-for="Name">Full Name <span class="required">*</span></label>
+          <input class="form-control" asp-for="Name" placeholder="e.g. Ahmed Hassan" />
+          <span class="invalid-feedback" asp-validation-for="Name"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" asp-for="DepartmentId">Department <span class="required">*</span></label>
+          <select class="form-select" asp-for="DepartmentId" asp-items="ViewBag.Departments">
+            <option value="">— Select Department —</option>
+          </select>
+          <span class="invalid-feedback" asp-validation-for="DepartmentId"></span>
+        </div>
+
+        <div style="display:flex;gap:var(--space-3);margin-top:var(--space-6);">
+          <button type="submit" class="btn btn-primary">Register Student</button>
+          <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+@section Scripts { @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); } }

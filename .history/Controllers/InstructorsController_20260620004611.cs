@@ -9,26 +9,20 @@ namespace University_Management_System.Controllers
     public class InstructorsController : Controller
     {
         private readonly AppDbContext _db;
-
         public InstructorsController(AppDbContext db) => _db = db;
 
         public async Task<IActionResult> Index()
         {
-            var instructors = await _db
-                .Instructors.Include(i => i.Department)
-                .Include(i => i.CourseInstructors)
-                    .ThenInclude(ci => ci.Course)
+            var instructors = await _db.Instructors
+                .Include(i => i.Department)
+                .Include(i => i.CourseInstructors).ThenInclude(ci => ci.Course)
                 .ToListAsync();
             return View(instructors);
         }
 
         public async Task<IActionResult> Create()
         {
-            ViewBag.Departments = new SelectList(
-                await _db.Departments.ToListAsync(),
-                "DeptId",
-                "Name"
-            );
+            ViewBag.Departments = new SelectList(await _db.Departments.ToListAsync(), "DeptId", "Name");
             return View();
         }
 
@@ -37,11 +31,7 @@ namespace University_Management_System.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Departments = new SelectList(
-                    await _db.Departments.ToListAsync(),
-                    "DeptId",
-                    "Name"
-                );
+                ViewBag.Departments = new SelectList(await _db.Departments.ToListAsync(), "DeptId", "Name");
                 return View(model);
             }
             _db.Instructors.Add(model);
@@ -53,30 +43,18 @@ namespace University_Management_System.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var instructor = await _db.Instructors.FindAsync(id);
-            if (instructor == null)
-                return NotFound();
-            ViewBag.Departments = new SelectList(
-                await _db.Departments.ToListAsync(),
-                "DeptId",
-                "Name",
-                instructor.DepartmentId
-            );
+            if (instructor == null) return NotFound();
+            ViewBag.Departments = new SelectList(await _db.Departments.ToListAsync(), "DeptId", "Name", instructor.DepartmentId);
             return View(instructor);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Instructor model)
         {
-            if (id != model.InsId)
-                return BadRequest();
+            if (id != model.InsId) return BadRequest();
             if (!ModelState.IsValid)
             {
-                ViewBag.Departments = new SelectList(
-                    await _db.Departments.ToListAsync(),
-                    "DeptId",
-                    "Name",
-                    model.DepartmentId
-                );
+                ViewBag.Departments = new SelectList(await _db.Departments.ToListAsync(), "DeptId", "Name", model.DepartmentId);
                 return View(model);
             }
             _db.Instructors.Update(model);
@@ -89,8 +67,7 @@ namespace University_Management_System.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var instructor = await _db.Instructors.FindAsync(id);
-            if (instructor == null)
-                return NotFound();
+            if (instructor == null) return NotFound();
             _db.Instructors.Remove(instructor);
             await _db.SaveChangesAsync();
             TempData["Success"] = "Instructor deleted successfully.";

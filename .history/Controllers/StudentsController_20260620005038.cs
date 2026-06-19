@@ -6,20 +6,19 @@ using University_Management_System.Models;
 
 namespace University_Management_System.Controllers
 {
-    public class InstructorsController : Controller
+    public class StudentsController : Controller
     {
         private readonly AppDbContext _db;
 
-        public InstructorsController(AppDbContext db) => _db = db;
+        public StudentsController(AppDbContext db) => _db = db;
 
         public async Task<IActionResult> Index()
         {
-            var instructors = await _db
-                .Instructors.Include(i => i.Department)
-                .Include(i => i.CourseInstructors)
-                    .ThenInclude(ci => ci.Course)
+            var students = await _db
+                .Students.Include(s => s.Department)
+                .Include(s => s.StudentCEnrollmentsourses)
                 .ToListAsync();
-            return View(instructors);
+            return View(students);
         }
 
         public async Task<IActionResult> Create()
@@ -33,7 +32,7 @@ namespace University_Management_System.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Instructor model)
+        public async Task<IActionResult> Create(Student model)
         {
             if (!ModelState.IsValid)
             {
@@ -44,30 +43,30 @@ namespace University_Management_System.Controllers
                 );
                 return View(model);
             }
-            _db.Instructors.Add(model);
+            _db.Students.Add(model);
             await _db.SaveChangesAsync();
-            TempData["Success"] = "Instructor added successfully.";
+            TempData["Success"] = "Student registered successfully.";
             return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            var instructor = await _db.Instructors.FindAsync(id);
-            if (instructor == null)
+            var student = await _db.Students.FindAsync(id);
+            if (student == null)
                 return NotFound();
             ViewBag.Departments = new SelectList(
                 await _db.Departments.ToListAsync(),
                 "DeptId",
                 "Name",
-                instructor.DepartmentId
+                student.DepartmentId
             );
-            return View(instructor);
+            return View(student);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Instructor model)
+        public async Task<IActionResult> Edit(int id, Student model)
         {
-            if (id != model.InsId)
+            if (id != model.Id)
                 return BadRequest();
             if (!ModelState.IsValid)
             {
@@ -79,21 +78,21 @@ namespace University_Management_System.Controllers
                 );
                 return View(model);
             }
-            _db.Instructors.Update(model);
+            _db.Students.Update(model);
             await _db.SaveChangesAsync();
-            TempData["Success"] = "Instructor updated successfully.";
+            TempData["Success"] = "Student updated successfully.";
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var instructor = await _db.Instructors.FindAsync(id);
-            if (instructor == null)
+            var student = await _db.Students.FindAsync(id);
+            if (student == null)
                 return NotFound();
-            _db.Instructors.Remove(instructor);
+            _db.Students.Remove(student);
             await _db.SaveChangesAsync();
-            TempData["Success"] = "Instructor deleted successfully.";
+            TempData["Success"] = "Student deleted successfully.";
             return RedirectToAction(nameof(Index));
         }
     }

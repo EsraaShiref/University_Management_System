@@ -14,7 +14,7 @@ namespace University_Management_System.Controllers
         public async Task<IActionResult> Index()
         {
             var courses = await _db
-                .Courses.Include(c => c.Enrollments)
+                .Courses.Include(c => c.StudentCourses)
                 .Include(c => c.CourseInstructors)
                     .ThenInclude(ci => ci.Instructor)
                 .ToListAsync();
