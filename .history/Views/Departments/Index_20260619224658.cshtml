@@ -1,0 +1,51 @@
+@model IEnumerable<University_Management_System.Models.Department>
+@{
+    ViewData["Title"] = "Departments";
+}
+
+<div class="page-header">
+    <div class="page-header__meta">
+        <span class="text-eyebrow">Administration</span>
+        <h1 class="page-title">Departments</h1>
+        <p class="page-subtitle">@Model.Count() academic departments in the university.</p>
+    </div>
+</div>
+
+<div class="row g-4 animate-fade-in-up">
+    @foreach (var d in Model)
+    {
+        <div class="col-md-6 col-xl-4">
+            <div class="card card--primary-top">
+                <div class="card-header">
+                    <h5 class="card-title">@d.Name</h5>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:var(--space-3);margin-top:var(--space-2);">
+                    <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+                        📍 @d.Location
+                    </div>
+                    <div style="font-size:var(--text-sm);color:var(--text-secondary);">
+                        📞 @d.PhoneNumber
+                    </div>
+                </div>
+                <div style="display:flex;gap:var(--space-3);margin-top:var(--space-5);">
+                    <div
+                        style="flex:1;background:var(--surface-overlay);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;">
+                        <div
+                            style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:var(--weight-bold);color:var(--primary);">
+                            @d.Students.Count
+                        </div>
+                        <div class="text-label" style="margin-top:var(--space-1);">Students</div>
+                    </div>
+                    <div
+                        style="flex:1;background:var(--surface-overlay);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;">
+                        <div
+                            style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:var(--weight-bold);color:var(--accent);">
+                            @d.Instructors.Count
+                        </div>
+                        <div class="text-label" style="margin-top:var(--space-1);">Faculty</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -10,6 +10,6 @@
         public Department Department { get; set; } = null!;
 
         // Many-to-many → Course
-        public ICollection<StudentCourse> Enrollments { get; set; } = new List<StudentCourse>();
+        public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
     }
 }

@@ -1,0 +1,69 @@
+@{
+    char GetInitial(string name)
+    {
+        var parts = name.Split(' ');
+        foreach (var part in parts)
+        {
+            var clean = part.TrimEnd('.');
+            if (clean != "Dr" && clean != "Prof" && clean != "Mr" && clean != "Ms" && clean.Length > 0)
+                return char.ToUpper(clean[0]);
+        }
+        return name[0];
+    }
+}
+@model IEnumerable<University_Management_System.Models.Instructor>
+@{
+    ViewData["Title"] = "Instructors";
+}
+
+<div class="page-header">
+    <div class="page-header__meta">
+        <span class="text-eyebrow">Faculty</span>
+        <h1 class="page-title">Instructors</h1>
+        <p class="page-subtitle">@Model.Count() faculty members across all departments.</p>
+    </div>
+</div>
+
+<div class="table-wrapper animate-fade-in-up">
+    <div class="table-toolbar">
+        <span class="table-toolbar__title">All Instructors</span>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Degree</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Courses</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:var(--space-3);">
+                            <div class="avatar avatar-sm avatar--success">@GetInitial(i.Name)</div>
+                            <div>
+                                <div style="font-weight:var(--weight-medium);">@i.Name</div>
+                                <div style="font-size:var(--text-xs);color:var(--text-muted);">Age @i.Age</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span class="badge badge-primary">@i.Department.Name</span></td>
+                    <td style="font-size:var(--text-sm);color:var(--text-secondary);">@i.Degree</td>
+                    <td style="font-size:var(--text-sm);">@i.Email</td>
+                    <td style="font-weight:var(--weight-semibold);color:var(--color-success-700);">
+                        $@i.Salary.ToString("N0")
+                    </td>
+                    <td><span class="badge badge-neutral">@i.CourseInstructors.Count @(i.CourseInstructors.Count == 1 ? "course" : "courses")</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="table-footer">
+        <span class="table-footer__count">Showing @Model.Count() instructors</span>
+    </div>
+</div>

@@ -9,8 +9,7 @@ namespace University_Management_System
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-            );
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -32,9 +31,8 @@ namespace University_Management_System
 
             app.MapStaticAssets();
             app.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Dashboard}/{action=Index}/{id?}"
-                )
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

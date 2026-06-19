@@ -1,0 +1,56 @@
+@model IEnumerable<University_Management_System.Models.Course>
+@{ ViewData["Title"] = "Courses"; }
+
+<div class="page-header">
+  <div class="page-header__meta">
+    <span class="text-eyebrow">Academic</span>
+    <h1 class="page-title">Courses</h1>
+    <p class="page-subtitle">@Model.Count() courses available this semester.</p>
+  </div>
+</div>
+
+<div class="table-wrapper animate-fade-in-up">
+  <div class="table-toolbar">
+    <span class="table-toolbar__title">All Courses</span>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Course Name</th>
+        <th>Topics</th>
+        <th>Instructors</th>
+        <th>Students</th>
+        <th>Degree Range</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var c in Model)
+      {
+        <tr>
+          <td class="text-muted" style="font-size:var(--text-xs);">@c.CrsId</td>
+          <td style="font-weight:var(--weight-medium);">@c.Name</td>
+          <td>
+            @foreach (var topic in c.Topics.Split(','))
+            {
+              <span class="badge badge-neutral" style="margin-right:2px;">@topic.Trim()</span>
+            }
+          </td>
+          <td>
+            @foreach (var ci in c.CourseInstructors)
+            {
+              <span class="badge badge-primary" style="margin-bottom:2px;display:inline-block;">@ci.Instructor.Name</span>
+            }
+          </td>
+          <td><span class="badge badge-success">@c.CourseStudents.Count</span></td>
+          <td>
+            <span class="badge badge-accent">@c.LowestDegree – @c.HighestDegree</span>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div class="table-footer">
+    <span class="table-footer__count">Showing @Model.Count() courses</span>
+  </div>
+</div>

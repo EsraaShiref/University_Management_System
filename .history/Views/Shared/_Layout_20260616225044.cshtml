@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - University_Management_System</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/University_Management_System.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <a class="sidebar-brand" asp-controller="Home" asp-action="Index">
+            <div class="sidebar-brand__icon">🎓</div>
+            <div>
+                <div class="sidebar-brand__name">UniSystem</div>
+                <div class="sidebar-brand__tagline">Management Portal</div>
+            </div>
+        </a>
+
+        <nav class="sidebar-nav">
+            <span class="sidebar-nav__group-label">Main</span>
+            <ul class="sidebar-nav__list">
+                <li class="sidebar-nav__item">
+                    <a class="sidebar-nav__link active" asp-controller="Home" asp-action="Index">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-nav__item">
+                    <a class="sidebar-nav__link" asp-controller="Students" asp-action="Index">
+                        Students
+                    </a>
+                </li>
+                <!-- add more nav items as you build features -->
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-search">
+                <input class="form-control" type="search" placeholder="Search..." />
+            </div>
+            <div class="topbar-actions">
+                <!-- notifications, avatar, etc. -->
+            </div>
+        </header>
+
+        <div class="content-area">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- scripts... -->
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - University_Management_System</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/University_Management_System.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <a class="sidebar-brand" asp-controller="Dashboard" asp-action="Index">
+            <div class="sidebar-brand__icon">🎓</div>
+            <div>
+                <div class="sidebar-brand__name">UniSystem</div>
+                <div class="sidebar-brand__tagline">Management Portal</div>
+            </div>
+        </a>
+
+        <nav class="sidebar-nav">
+            <span class="sidebar-nav__group-label">Overview</span>
+            <ul class="sidebar-nav__list">
+                <li class="sidebar-nav__item">
+                    <a class="sidebar-nav__link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")"
+                       asp-controller="Dashboard" asp-action="Index">
+                        📊 Dashboard
+                    </a>
+                </li>
+            </ul>
+
+            <span class="sidebar-nav__group-label">Academic</span>
+            <ul class="sidebar-nav__list">
+                <li class="sidebar-nav__item">
+                    <a class="sidebar-nav__link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Students" ? "active" : "")"
+                       asp-controller="Students" asp-action="Index">
+                        👩‍🎓 Students
+                    </a>
+                </li>
+                <li class="sidebar-nav__item">
+                    <a class="sidebar-nav__link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Courses" ? "active" : "")"
+                       asp-controller="Courses" asp-action="Index">
+                        📚 Courses
+                    </a>
+                </li>
+                <li class="sidebar-nav__item">
+                    <a class="sidebar-nav__link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Instructors" ? "active" : "")"
+                       asp-controller="Instructors" asp-action="Index">
+                        👨‍🏫 Instructors
+                    </a>
+                </li>
+                <li class="sidebar-nav__item">
+                    <a class="sidebar-nav__link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Departments" ? "active" : "")"
+                       asp-controller="Departments" asp-action="Index">
+                        🏛️ Departments
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-footer__user">
+                <div class="avatar avatar-sm avatar--accent">A</div>
+                <div>
+                    <div class="sidebar-footer__name">Admin User</div>
+                    <div class="sidebar-footer__role">System Administrator</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main-content">
+        <header class="topbar">
+            <span style="font-size:var(--text-sm);color:var(--text-muted);">
+                @ViewData["Title"]
+            </span>
+            <div class="topbar-actions">
+                <div class="avatar avatar-md avatar--primary">A</div>
+            </div>
+        </header>
+
+        <div class="content-area">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

@@ -23,7 +23,7 @@ namespace University_Management_System.Data
             modelBuilder
                 .Entity<StudentCourse>()
                 .HasOne(e => e.Student)
-                .WithMany(s => s.StudentCourses)
+                .WithMany(s => s.Enrollments)
                 .HasForeignKey(e => e.StudentId);
 
             modelBuilder

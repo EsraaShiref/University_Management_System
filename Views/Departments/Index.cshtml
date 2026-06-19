@@ -1,0 +1,58 @@
+@model IEnumerable<University_Management_System.Models.Department>
+@{
+    ViewData["Title"] = "Departments";
+}
+
+<div class="page-header">
+    <div class="page-header__meta">
+        <span class="text-eyebrow">Administration</span>
+        <h1 class="page-title">Departments</h1>
+        <p class="page-subtitle">@Model.Count() academic departments in the university.</p>
+    </div>
+</div>
+
+<div class="row g-4 animate-fade-in-up">
+    @foreach (var d in Model)
+    {
+        <div class="col-md-6 col-xl-4">
+            <div class="card card--primary-top">
+                <div class="card-header">
+                    <h5 class="card-title">@d.Name</h5>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:var(--space-3);margin-top:var(--space-2);">
+                    <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;align-items:center;gap:var(--space-2);">
+                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="var(--danger)" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                        </svg>
+                        @d.Location
+                    </div>
+                    <div style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;align-items:center;gap:var(--space-2);margin-top:var(--space-2);">
+                        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="var(--success)" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                        @d.PhoneNumber
+                    </div>
+                </div>
+                <div style="display:flex;gap:var(--space-3);margin-top:var(--space-5);">
+                    <div
+                        style="flex:1;background:var(--surface-overlay);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;">
+                        <div
+                            style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:var(--weight-bold);color:var(--primary);">
+                            @d.Students.Count
+                        </div>
+                        <div class="text-label" style="margin-top:var(--space-1);">Students</div>
+                    </div>
+                    <div
+                        style="flex:1;background:var(--surface-overlay);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;">
+                        <div
+                            style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:var(--weight-bold);color:var(--accent);">
+                            @d.Instructors.Count
+                        </div>
+                        <div class="text-label" style="margin-top:var(--space-1);">Faculty</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

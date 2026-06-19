@@ -1,0 +1,126 @@
+@model University_Management_System.Models.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="page-header">
+    <div class="page-header__meta">
+        <span class="text-eyebrow">Overview</span>
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-subtitle">Welcome back — here's what's happening at the university.</p>
+    </div>
+</div>
+
+<!-- Stat Cards -->
+<div class="row g-4 mb-5">
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card animate-fade-in-up delay-1">
+            <div class="stat-card__header">
+                <span class="stat-card__label">Students</span>
+                <div class="stat-card__icon stat-card__icon--primary">👩‍🎓</div>
+            </div>
+            <div class="stat-card__value">@Model.TotalStudents</div>
+            <div class="stat-card__trend stat-card__trend--up">
+                ↑ Active this semester
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card animate-fade-in-up delay-2">
+            <div class="stat-card__header">
+                <span class="stat-card__label">Courses</span>
+                <div class="stat-card__icon stat-card__icon--accent">📚</div>
+            </div>
+            <div class="stat-card__value">@Model.TotalCourses</div>
+            <div class="stat-card__trend stat-card__trend--up">
+                ↑ Available this semester
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card animate-fade-in-up delay-3">
+            <div class="stat-card__header">
+                <span class="stat-card__label">Instructors</span>
+                <div class="stat-card__icon stat-card__icon--success">👨‍🏫</div>
+            </div>
+            <div class="stat-card__value">@Model.TotalInstructors</div>
+            <div class="stat-card__trend stat-card__trend--up">
+                ↑ Faculty members
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card animate-fade-in-up delay-4">
+            <div class="stat-card__header">
+                <span class="stat-card__label">Departments</span>
+                <div class="stat-card__icon stat-card__icon--warning">🏛️</div>
+            </div>
+            <div class="stat-card__value">@Model.TotalDepartments</div>
+            <div class="stat-card__trend stat-card__trend--up">
+                ↑ Active departments
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent tables side by side -->
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="table-wrapper">
+            <div class="table-toolbar">
+                <span class="table-toolbar__title">Recent Students</span>
+                <a asp-controller="Students" asp-action="Index" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var s in Model.RecentStudents)
+                    {
+                        <tr>
+                            <td>
+                                <div style="display:flex;align-items:center;gap:var(--space-3);">
+                                    <div class="avatar avatar-sm avatar--primary">@s.Name[0]</div>
+                                    @s.Name
+                                </div>
+                            </td>
+                            <td><span class="badge badge-primary">@s.Department.Name</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="table-wrapper">
+            <div class="table-toolbar">
+                <span class="table-toolbar__title">Recent Courses</span>
+                <a asp-controller="Courses" asp-action="Index" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Enrolled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model.RecentCourses)
+                    {
+                        <tr>
+                            <td>@c.Name</td>
+                            <td>
+                                <span class="badge badge-success">@c.StudentCourses.Count students</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

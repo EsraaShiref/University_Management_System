@@ -1,0 +1,54 @@
+@model IEnumerable<University_Management_System.Models.Instructor>
+@{ ViewData["Title"] = "Instructors"; }
+
+<div class="page-header">
+  <div class="page-header__meta">
+    <span class="text-eyebrow">Faculty</span>
+    <h1 class="page-title">Instructors</h1>
+    <p class="page-subtitle">@Model.Count() faculty members across all departments.</p>
+  </div>
+</div>
+
+<div class="table-wrapper animate-fade-in-up">
+  <div class="table-toolbar">
+    <span class="table-toolbar__title">All Instructors</span>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Degree</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>Courses</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var i in Model)
+      {
+        <tr>
+          <td>
+            <div style="display:flex;align-items:center;gap:var(--space-3);">
+              <div class="avatar avatar-sm avatar--success">@i.Name[0]</div>
+              <div>
+                <div style="font-weight:var(--weight-medium);">@i.Name</div>
+                <div style="font-size:var(--text-xs);color:var(--text-muted);">Age @i.Age</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge badge-primary">@i.Department.Name</span></td>
+          <td style="font-size:var(--text-sm);color:var(--text-secondary);">@i.Degree</td>
+          <td style="font-size:var(--text-sm);">@i.Email</td>
+          <td style="font-weight:var(--weight-semibold);color:var(--color-success-700);">
+            $@i.Salary.ToString("N0")
+          </td>
+          <td><span class="badge badge-neutral">@i.CourseInstructors.Count courses</span></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div class="table-footer">
+    <span class="table-footer__count">Showing @Model.Count() instructors</span>
+  </div>
+</div>

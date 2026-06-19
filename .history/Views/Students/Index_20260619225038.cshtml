@@ -1,0 +1,47 @@
+@model IEnumerable<University_Management_System.Models.Student>
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="page-header">
+    <div class="page-header__meta">
+        <span class="text-eyebrow">Academic</span>
+        <h1 class="page-title">Students</h1>
+        <p class="page-subtitle">@Model.Count() students registered across all departments.</p>
+    </div>
+</div>
+
+<div class="table-wrapper animate-fade-in-up">
+    <div class="table-toolbar">
+        <span class="table-toolbar__title">All Students</span>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Department</th>
+                <th>Enrolled Courses</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td class="text-muted" style="font-size:var(--text-xs);">@s.Id</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:var(--space-3);">
+                            <div class="avatar avatar-sm avatar--primary">@s.Name[0]</div>
+                            <span style="font-weight:var(--weight-medium);">@s.Name</span>
+                        </div>
+                    </td>
+                    <td><span class="badge badge-primary">@s.Department.Name</span></td>
+                    <td><span class="badge badge-neutral">@(((s.GetType().GetProperty("StudentCourses")?.GetValue(s) as System.Collections.ICollection)?.Count) ?? 0) courses</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="table-footer">
+        <span class="table-footer__count">Showing @Model.Count() students</span>
+    </div>
+</div>
