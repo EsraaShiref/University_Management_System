@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using University_Management_System.Data;
+
 namespace University_Management_System
 {
     public class Program
@@ -5,6 +8,8 @@ namespace University_Management_System
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
